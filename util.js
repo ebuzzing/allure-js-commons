@@ -3,13 +3,13 @@ var fileType = require('file-type'),
 
 module.exports = {
     getBufferInfo: function(buffer, type) {
-        var fileInfo = fileType(buffer),
+        var fileInfo,
             fileExtension = 'txt',
             fileMime = 'text/plain';
         if(type) {
             fileMime = type;
             fileExtension = mime.getExtension(fileMime);
-        } else if(fileInfo) {
+        } else if ((fileInfo = fileType(buffer))) {
             fileExtension = fileInfo.ext;
             fileMime = fileInfo.mime;
         }
